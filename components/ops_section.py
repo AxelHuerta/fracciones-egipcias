@@ -1,5 +1,5 @@
 import flet as ft
-from fracciones import Fraccion, Fracciones, FraccionEgipcia
+from fracciones import Fraccion, FraccionEgipcia
 
 
 class Ops_Section(ft.Column):
@@ -23,54 +23,99 @@ class Ops_Section(ft.Column):
         def handle_op_button(e, operation):
             # Resetear los botones
             for btn in [self.suma_btn, self.resta_btn, self.mult_btn, self.div_btn]:
-                btn.bgcolor = ft.colors.SURFACE_VARIANT
+                btn.bgcolor = ft.Colors.GREY
                 # btn.color = ft.colors.WHITE
 
             # Activar el boton seleccionado
-            e.control.bgcolor = ft.colors.TEAL_ACCENT_700
-            e.control.color = ft.colors.WHITE
+            e.control.bgcolor = ft.Colors.TEAL_ACCENT_700
+            e.control.color = ft.Colors.WHITE
             self.active_operation = operation
             self.update()
         
         def handle_inputs(e):
             if self.numerador1.value == "" or self.denominador1.value == "" or self.numerador2.value == "" or self.denominador2.value == "" or self.active_operation == None:
-                print("No hay datos")
                 self.result_text.value = "Debe llenar los campos y seleccionar una operación"
                 self.update()
                 return
             
+            if self.active_operation == "+":
+                a = Fraccion(
+                    int(self.numerador1.value), int(self.denominador1.value)
+                )
+                b = Fraccion(
+                    int(self.numerador2.value), int(self.denominador2.value)
+                )
+                result: Fraccion =  a + b
+                self.result_numerador.value = str(result.numerador)
+                self.result_denominador.value = str(result.denominador)
+                self.update()
 
+            if self.active_operation == "-":
+                a = Fraccion(
+                    int(self.numerador1.value), int(self.denominador1.value)
+                )
+                b = Fraccion(
+                    int(self.numerador2.value), int(self.denominador2.value)
+                )
+                result: Fraccion =  a - b
+                self.result_numerador.value = str(result.numerador)
+                self.result_denominador.value = str(result.denominador)
+                self.update()
+
+            if self.active_operation == "*":
+                a = Fraccion(
+                    int(self.numerador1.value), int(self.denominador1.value)
+                )
+                b = Fraccion(
+                    int(self.numerador2.value), int(self.denominador2.value)
+                )
+                result: Fraccion =  a * b
+                self.result_numerador.value = str(result.numerador)
+                self.result_denominador.value = str(result.denominador)
+                self.update()
+            
+            if self.active_operation == "/":
+                a = Fraccion(
+                    int(self.numerador1.value), int(self.denominador1.value)
+                )
+                b = Fraccion(
+                    int(self.numerador2.value), int(self.denominador2.value)
+                )
+                result: Fraccion =  a / b
+                self.result_numerador.value = str(result.numerador)
+                self.result_denominador.value = str(result.denominador)
+                self.update()
 
                
         # Botones
         self.suma_btn = ft.ElevatedButton(
             "+",
-            bgcolor=ft.colors.SURFACE_VARIANT,
-            on_click=lambda e: handle_op_button(e, "suma"),
+            bgcolor=ft.Colors.GREY,
+            on_click=lambda e: handle_op_button(e, "+"),
         )
 
         self.resta_btn = ft.ElevatedButton(
             "-",
-            bgcolor=ft.colors.SURFACE_VARIANT,
-            on_click=lambda e: handle_op_button(e, "resta"),
+            bgcolor=ft.Colors.GREY,
+            on_click=lambda e: handle_op_button(e, "-"),
         )
 
         self.mult_btn = ft.ElevatedButton(
             "×",
-            bgcolor=ft.colors.SURFACE_VARIANT,
-            on_click=lambda e: handle_op_button(e, "multiplicacion"),
+            bgcolor=ft.Colors.GREY,
+            on_click=lambda e: handle_op_button(e, "*"),
         )
 
         self.div_btn = ft.ElevatedButton(
             "÷",
-            bgcolor=ft.colors.SURFACE_VARIANT,
-            on_click=lambda e: handle_op_button(e, "division"),
+            bgcolor=ft.Colors.GREY,
+            on_click=lambda e: handle_op_button(e, "/"),
         )
 
         self.result_btn = ft.ElevatedButton(
             "Resultado",
-            bgcolor=ft.colors.TEAL_ACCENT_400,
-            color=ft.colors.BLACK,
+            bgcolor=ft.Colors.TEAL_ACCENT_400,
+            color=ft.Colors.BLACK,
             width=680,
             on_click=lambda e: handle_inputs(e),
         )
