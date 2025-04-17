@@ -1,7 +1,7 @@
 import flet as ft
 from components.header import Header
 from components.ops_section import Ops_Section
-from components.to_egipcian import To_Egipcian
+from components.to_egyptian import To_Egyptian
 
 
 def main(page: ft.Page):
@@ -22,7 +22,7 @@ def main(page: ft.Page):
 
     title = Header()
     ops_section = Ops_Section()
-    to_egipcian = To_Egipcian()
+    to_egyptian = To_Egyptian()
 
     tabs = ft.Tabs(
         selected_index=0,
@@ -34,7 +34,7 @@ def main(page: ft.Page):
             ),
             ft.Tab(
                 text="Fracción a Egipcia",
-                content=to_egipcian,
+                content=to_egyptian,
             ),
         ],
         expand=1,

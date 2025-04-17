@@ -2,7 +2,7 @@ import flet as ft
 from fracciones import Fraccion, FraccionEgipcia
 
 
-class To_Egipcian(ft.Column):
+class To_Egyptian(ft.Column):
     def __init__(self, page=None):
         super().__init__()
 
