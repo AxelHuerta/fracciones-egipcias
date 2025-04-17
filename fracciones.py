@@ -1,5 +1,6 @@
 import math
 
+
 # Tipos
 class Fraccion:
     def __init__(self, numerador: int, denominador: int):
@@ -8,9 +9,12 @@ class Fraccion:
 
     def __str__(self):
         return f"{self.numerador}/{self.denominador}"
+
     # Sumar fracciones
     def __add__(self, other):
-        numerador = self.numerador * other.denominador + other.numerador * self.denominador
+        numerador = (
+            self.numerador * other.denominador + other.numerador * self.denominador
+        )
         denominador = self.denominador * other.denominador
         resultado = Fraccion(numerador, denominador)
 
@@ -18,7 +22,9 @@ class Fraccion:
 
     # Restar fracciones
     def __sub__(self, other):
-        numerador = self.numerador * other.denominador - other.numerador * self.denominador
+        numerador = (
+            self.numerador * other.denominador - other.numerador * self.denominador
+        )
         denominador = self.denominador * other.denominador
         resultado = Fraccion(numerador, denominador)
 
@@ -71,7 +77,7 @@ class FraccionEgipcia:
             aprox: Fraccion = Fraccion(
                 1, (math.floor(elemento.denominador / elemento.numerador) + 1)
             )
-            diferencia: Fraccion = Fraccion.restar(elemento, aprox)
+            diferencia: Fraccion = elemento - aprox
 
             listado.append(aprox)
             listado.append(diferencia)
@@ -80,3 +86,6 @@ class FraccionEgipcia:
                 is_egipcia = True
 
         return listado
+
+    def to_string(fracciones: list[Fraccion]) -> str:
+        return " + ".join(str(fraccion) for fraccion in fracciones)
